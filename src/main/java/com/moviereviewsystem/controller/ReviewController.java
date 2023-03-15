@@ -75,6 +75,18 @@ public class ReviewController {
 
 	}
 
+	@GetMapping("/getReviewByMovieId")
+	private Optional<Review> getReviewByMovieId(@RequestParam int movieId) {
+		// TODO Auto-generated method stub
+		Optional<Review> review = reviewServices.getReviewByMovieId(movieId);
+
+		if (review.isEmpty())
+			throw new ReviewNotFoundException("Review with ID:" + movieId + " does not exist.");
+
+		return review;
+
+	}
+
 	@GetMapping("/getReviewByIdPathVar/{reviewId}")
 	private Optional<Review> getReviewByIdPathVar(@PathVariable int reviewId) {
 		// TODO Auto-generated method stub

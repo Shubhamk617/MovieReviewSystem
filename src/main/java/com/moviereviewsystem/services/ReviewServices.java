@@ -33,4 +33,7 @@ public interface ReviewServices {
 
 	public void deleteReviewById(int reviewId);
 
+	public Optional<Review> getReviewByMovieId(int movieId);
+
+
 }

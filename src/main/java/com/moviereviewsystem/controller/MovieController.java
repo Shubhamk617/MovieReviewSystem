@@ -92,7 +92,7 @@ public class MovieController {
 		// TODO Auto-generated method stub
 		Movie savedMovie = movieServices.saveMovie(movie);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedMovie.getMovieId()).toUri();
+				.buildAndExpand(savedMovie.getId()).toUri();
 		return ResponseEntity.created(location).build();
 		// movieServices.saveMovie(movie);
 	}
@@ -110,9 +110,9 @@ public class MovieController {
 	@PutMapping("/updateMovie")
 	private void updateMovie(@RequestBody Movie movie) {
 		// TODO Auto-generated method stub
-		Optional<Movie> existingMovie = movieServices.getMovieById(movie.getMovieId());
+		Optional<Movie> existingMovie = movieServices.getMovieById(movie.getId());
 		if (existingMovie.isEmpty())
-			throw new MovieNotFoundException("Movie with ID:" + movie.getMovieId() + " does not exist.");
+			throw new MovieNotFoundException("Movie with ID:" + movie.getId() + " does not exist.");
 
 		movieServices.saveMovie(movie);
 	}
@@ -120,9 +120,9 @@ public class MovieController {
 	@DeleteMapping("/deleteMovie")
 	private void deleteMovie(@RequestBody Movie movie) {
 		// TODO Auto-generated method stub
-		Optional<Movie> existingMovie = movieServices.getMovieById(movie.getMovieId());
+		Optional<Movie> existingMovie = movieServices.getMovieById(movie.getId());
 		if (existingMovie.isEmpty())
-			throw new MovieNotFoundException("Movie with ID:" + movie.getMovieId() + " does not exist.");
+			throw new MovieNotFoundException("Movie with ID:" + movie.getId() + " does not exist.");
 		movieServices.deleteMovie(movie);
 	}
 
@@ -134,5 +134,7 @@ public class MovieController {
 			throw new MovieNotFoundException("Movie with ID:" + movieId + " does not exist.");
 		movieServices.deleteMovieById(movieId);
 	}
+	
+	
 
 }
