@@ -68,4 +68,10 @@ public class ReviewServicesImpl implements ReviewServices {
 		return reviewRepository.saveAll(review);
 	}
 
+	@Override
+	public Optional<Review> getReviewByMovieId(int movieId) {
+		// TODO Auto-generated method stub
+		return reviewRepository.findReviewByMovieId(movieId);
+	}
+
 }
